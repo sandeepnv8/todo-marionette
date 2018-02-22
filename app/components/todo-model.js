@@ -10,7 +10,7 @@ export default Backbone.Model.extend({
         return props.url ? props.url : '';
     },
     sync: function(method, model, options) {
-        console.log("**fetch", method, model, options);
+        //console.log("**fetch", method, model, options);
     },
     initialize: function() {
         if(this.isNew()){

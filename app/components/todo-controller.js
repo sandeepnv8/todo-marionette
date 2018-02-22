@@ -1,9 +1,10 @@
+import Backbone from 'backbone';
 import Marionette from 'backbone.marionette';
-import $ from 'jquery';
 import TodoLayout from './todo-layout';
 import TodoCollection from './todo-collection';
 import TodoItem from './todo-item';
 import TodoCollectionView from './todo-collection-view';
+import TodoActionView from './todo-actions';
 
 const filterChannel = Backbone.Radio.channel('filter');
 export default Marionette.Object.extend({
@@ -16,6 +17,7 @@ export default Marionette.Object.extend({
         if(this.todoList.models.length){
             this.showListView();
         }
+        this.showTodoActions();
         this.todoList.on('all', this.showListView, this);
         this.todoList.fetch();
     },
@@ -32,7 +34,21 @@ export default Marionette.Object.extend({
         todoListView.render();
         this.layout.showChildView('main', todoListView);
     },
+    showTodoActions: function() {
+        var todoActionView = new TodoActionView({
+            collection: this.todoList
+        });
+        todoActionView.render();
+        this.layout.showChildView('actions', todoActionView);
+    },
+    showActive: function() {
+        console.log("*** through route");
+    },
+    showCompleted: function () {
+        console.log("*** through route");
+    },
     filterItems: function (filter) {
+        console.log("***filterItems:", filter);
         var newFilter = filter && filter.trim() || 'all';
         filterChannel.request('filterState').set('filter', newFilter);
     }

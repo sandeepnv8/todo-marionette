@@ -6,7 +6,9 @@ var merge = require('webpack-merge');
 
 var webpackCommon = {
   entry: {
-    app: ['./app/index']
+    'app': './app/index',
+    'app-start': './app/components/todo-app-start',
+    'app-filter': './app/components/todo-filter-state'
   },
   module: {
     rules: [

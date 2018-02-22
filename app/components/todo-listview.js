@@ -18,7 +18,7 @@ export default Marionette.View.extend({
         'click @ui.toggle': 'toggle'
     },
     initialize: function() {
-        console.log("***");
+        //console.log("***");
     },
     className: function () {
         return this.model.get('completed') ? 'completed' : 'active';
